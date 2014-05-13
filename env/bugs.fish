@@ -1,0 +1,1 @@
+set -x XLIB_SKIP_ARGB_VISUALS 1
