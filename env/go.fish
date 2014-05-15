@@ -1,5 +1,5 @@
-set -x GOROOT "/usr/src/go-release"
-set -x PATH $PATH "$GOROOT/bin"
+set -gx GOROOT "/usr/src/go-release"
+set -gx PATH $PATH "$GOROOT/bin"
 
 
 if test -d "$HOME/code/go"

@@ -1,1 +1,1 @@
-set -x SDL_AUDIODRIVER "pulse"
+set -gx SDL_AUDIODRIVER "pulse"

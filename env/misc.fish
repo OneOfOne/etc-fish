@@ -1,5 +1,5 @@
-set -x PATH $PATH "/usr/local/bin"
-set -x PATH "$HOME/bin" $PATH
+set -gx PATH $PATH "/usr/local/bin"
+set -gx PATH "$HOME/bin" $PATH
 
 if set -q DISPLAY 
 	set -gx EDITOR "subl3 -n -w"
@@ -16,17 +16,17 @@ alias mount-ro "mount -o ro,remount"
 alias mount-rw "mount -o rw,remount"
 
 
-set -x LESSOPEN "|/usr/bin/lesspipe.sh %s"
-set -x LESS_ADVANCED_PREPROCESSOR 1
+set -gx LESSOPEN "|/usr/bin/lesspipe.sh %s"
+set -gx LESS_ADVANCED_PREPROCESSOR 1
 alias less "less -R"
 
 alias monitor-off "xset dpms force off"
 
-set -x WINEDEBUG "-all"
-set -x WINEARCH "win32"
+set -gx WINEDEBUG "-all"
+set -gx WINEARCH "win32"
 alias killwine "wineserver -k; killall -9 wine wineserver"
 
-set -x MOZ_PLUGIN_PATH "/usr/lib/mozilla/plugins"
+set -gx MOZ_PLUGIN_PATH "/usr/lib/mozilla/plugins"
 
 function say
 	echo $argv | espeak --stdin -v+f6
