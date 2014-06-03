@@ -1,4 +1,4 @@
-set -gx PATH $PATH "/usr/local/bin"
+set -gx PATH "/usr/local/bin" $PATH 
 set -gx PATH "$HOME/bin" $PATH
 
 if set -q DISPLAY 
@@ -27,6 +27,8 @@ set -gx WINEARCH "win32"
 alias killwine "wineserver -k; killall -9 wine wineserver"
 
 set -gx MOZ_PLUGIN_PATH "/usr/lib/mozilla/plugins"
+
+set -gx LD ld.gold
 
 function say
 	echo $argv | espeak --stdin -v+f6

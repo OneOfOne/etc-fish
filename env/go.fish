@@ -13,13 +13,15 @@ function rebuild-go
 		return 1
 	end
 	pushd $GOROOT/src
-	hg pull; or return 1
-	hg up; or return 1
-	systemctl stop iptables
+	hg pull -uv ; or return 1
+	rm -rf ../pkg ../bin
+
+	sudo systemctl stop iptables
 	env CC=clang CXX=clang++ ./all.bash
+	sudo systemctl start iptables
+
 	env GOOS=windows GOARCH=amd64 CC=clang CXX=clang++ ./make.bash --no-clean
 	env GOOS=windows GOARCH=386 CC=clang CXX=clang++ ./make.bash --no-clean
-	systemctl start iptables
 	popd
 end
 
