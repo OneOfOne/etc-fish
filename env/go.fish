@@ -9,26 +9,26 @@ end
 
 function rebuild-go
 	if not test -O $GOROOT
-		echo "must be root"
+		echo "you don't own $GOROOT"
 		return 1
 	end
 	pushd $GOROOT/src
 	hg pull -uv ; or return 1
 	rm -rf ../pkg ../bin
 
-	sudo systemctl stop iptables
-	env CC=clang CXX=clang++ ./all.bash
-	sudo systemctl start iptables
+	#sudo systemctl stop iptables
+	env CC=gcc CXX=g++ CGO_ENABLED=1 ./make.bash
+	#sudo systemctl start iptables
 
-	env GOOS=windows GOARCH=amd64 CC=clang CXX=clang++ ./make.bash --no-clean
-	env GOOS=windows GOARCH=386 CC=clang CXX=clang++ ./make.bash --no-clean
+	env GOOS=windows GOARCH=amd64 CGO_ENABLED=1 ./make.bash
+	env GOOS=windows GOARCH=386 CGO_ENABLED=1 ./make.bash
 	popd
 end
 
 function go-win64 
-	env GOOS=windows GOARCH=amd64 go
+	env GOOS=windows GOARCH=amd64 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ go $argv
 end
 
 function go-win32
-	env GOOS=windows GOARCH=386 go
+	env GOOS=windows GOARCH=386 CGO_ENABLED=1 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go $argv
 end

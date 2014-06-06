@@ -33,3 +33,7 @@ set -gx LD ld.gold
 function say
 	echo $argv | espeak --stdin -v+f6
 end
+
+function pss
+	ps -Ao pid:5,user:10,state:1,cmd | grep --color=always $argv | grep -v grep
+end
