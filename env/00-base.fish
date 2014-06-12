@@ -1,4 +1,4 @@
-set -gx PATH "/usr/local/bin" $PATH 
+set -gx PATH "/usr/bin" "/usr/local/bin" $PATH 
 set -gx PATH "$HOME/bin" $PATH
 
 if set -q DISPLAY 
