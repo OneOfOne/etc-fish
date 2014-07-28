@@ -1,5 +1,5 @@
-alias y yaourt
-alias yup "yaourt -Syu --aur"
-alias yr "yaourt -Rscd"
-alias yi "yaourt -S"
-alias ys "yaourt -Ss"
+alias y "nice -n20 ionice -c3 yaourt"
+alias yup "y -Syu --aur"
+alias yr "y -Rscd"
+alias yi "y -S"
+alias ys "y -Ss"

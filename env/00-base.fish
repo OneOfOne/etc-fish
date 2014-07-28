@@ -10,7 +10,7 @@ end
 alias rm "rm -i"
 alias mv "mv -i"
 alias cp "cp --reflink=auto --sparse=always -i"
-alias rscp "rsync -avzP"
+alias rscp "rsync -avzzP"
 
 alias mount-ro "mount -o ro,remount"
 alias mount-rw "mount -o rw,remount"
@@ -35,5 +35,5 @@ function say
 end
 
 function pss
-	ps -Ao pid:5,user:10,state:1,cmd | grep --color=always $argv | grep -v grep
+	ps -Ao pid:5,user:10,state:1,cls:2,cmd | grep --color=always $argv | grep -v grep
 end

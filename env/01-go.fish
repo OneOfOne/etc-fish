@@ -17,7 +17,7 @@ function rebuild-go
 	rm -rf ../pkg ../bin
 
 	#sudo systemctl stop iptables
-	env CC=gcc CXX=g++ CGO_ENABLED=1 ./make.bash
+	env CC=clang CXX=clang++ CGO_ENABLED=1 ./all.bash
 	#sudo systemctl start iptables
 
 	env GOOS=windows GOARCH=amd64 CGO_ENABLED=1 ./make.bash
@@ -26,9 +26,9 @@ function rebuild-go
 end
 
 function go-win64 
-	env GOOS=windows GOARCH=amd64 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ go $argv
+	env GOOS=windows GOARCH=amd64 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ CGO_LDFLAGS="-lssp" go $argv
 end
 
 function go-win32
-	env GOOS=windows GOARCH=386 CGO_ENABLED=1 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ go $argv
+	env GOOS=windows GOARCH=386 CGO_ENABLED=1 CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ CGO_LDFLAGS="-lssp" go $argv
 end
